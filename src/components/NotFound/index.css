@@ -1,0 +1,22 @@
+.err-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+}
+.err-img {
+  height: 30vh;
+}
+.err-h {
+  color: #ffffff;
+  font-size: 20px;
+}
+.err-p {
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1.5;
+  margin-top: 0px;
+  text-align: center;
+}

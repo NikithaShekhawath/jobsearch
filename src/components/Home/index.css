@@ -1,0 +1,55 @@
+.home-cont {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/home-sm-bg.png');
+  background-size: cover;
+  padding: 10px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.FindJobsHeading {
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 700;
+}
+.home-text {
+  color: #f8fafc;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 2;
+}
+.FindJobsButton {
+  border: bone;
+  background-color: #6366f1;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 8px;
+  height: 40px;
+  width: 110px;
+  margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+  .home-cont {
+    background-image: url('https://assets.ccbp.in/frontend/react-js/home-lg-bg.png');
+    align-items: flex-start;
+    padding: 30px;
+  }
+  .FindJobsHeading {
+    font-size: 60px;
+    font-weight: 600;
+    width: 50vw;
+  }
+  .home-text {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 2;
+    width: 50vw;
+  }
+  .FindJobsButton {
+    font-size: 18px;
+    border-radius: 8px;
+    height: 44px;
+    width: 120px;
+  }
+}
