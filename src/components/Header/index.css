@@ -5,6 +5,8 @@
   justify-content: space-between;
   align-items: center;
   height: 10vh;
+  position: sticky;
+  top: 0;
 }
 .website-logo {
   height: 30px;

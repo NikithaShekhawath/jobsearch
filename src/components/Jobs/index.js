@@ -27,6 +27,28 @@ const employmentTypesList = [
     employmentTypeId: 'INTERNSHIP',
   },
 ]
+const locationList = [
+  {
+    label: 'Hyderabad',
+    locationId: 'HYDERABAD',
+  },
+  {
+    label: 'Bangalore',
+    locationId: 'BANGALORE',
+  },
+  {
+    label: 'Chennai',
+    locationId: 'CHENNAI',
+  },
+  {
+    label: 'Delhi',
+    locationId: 'DELHI',
+  },
+  {
+    label: 'Mumbai',
+    locationId: 'MUMBAI',
+  },
+]
 
 const salaryRangesList = [
   {
@@ -62,6 +84,7 @@ class Jobs extends Component {
     totalJobs: [],
     radioInput: '',
     employmentType: [],
+    locationType: [],
     checkingJobData: apiStatusConstanst.initial,
   }
 
@@ -104,12 +127,14 @@ class Jobs extends Component {
   getJobsData = async () => {
     this.setState({checkingJobData: apiStatusConstanst.initial})
 
-    const {searchInput, radioInput, employmentType} = this.state
+    const {searchInput, radioInput, employmentType, locationType} = this.state
     console.log(employmentType)
     const employmentTypeString = employmentType.join()
+    const locationTypeString = locationType.join()
     console.log(employmentTypeString)
+    console.log(locationTypeString)
     const jwtToken = Cookies.get('jwt_token')
-    const jobsUrl = `https://apis.ccbp.in/jobs?employment_type=${employmentTypeString}&minimum_package=${radioInput}&search=${searchInput}`
+    const jobsUrl = `https://apis.ccbp.in/jobs?employment_type=${employmentTypeString}&location_type=${locationTypeString}&minimum_package=${radioInput}&search=${searchInput}`
     const options = {
       method: 'GET',
       headers: {
@@ -269,6 +294,27 @@ class Jobs extends Component {
     }
   }
 
+  selectLocation = event => {
+    const {locationType} = this.state
+
+    if (locationType.includes(event.target.id)) {
+      const filterData = locationType.filter(each => each !== event.target.id)
+      this.setState(
+        {
+          locationType: filterData,
+        },
+        this.getJobsData,
+      )
+    } else {
+      this.setState(
+        prevState => ({
+          locationType: [...prevState.locationType, event.target.id],
+        }),
+        this.getJobsData,
+      )
+    }
+  }
+
   changeInput = event => {
     this.setState({searchInput: event.target.value})
   }
@@ -346,6 +392,26 @@ class Jobs extends Component {
                       name="salary-radio"
                     />
                     <label htmlFor={each.salaryRangeId} className="label">
+                      {each.label}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <hr className="seperator" />
+
+            <div>
+              <h1 className="filter-heading">Locations </h1>
+              <ul className="Ul">
+                {locationList.map(each => (
+                  <li key={each.locationId} className="filter-item">
+                    <input
+                      onChange={this.selectLocation}
+                      value={each.label}
+                      type="checkbox"
+                      id={each.locationId}
+                    />
+                    <label htmlFor={each.locationId} className="label">
                       {each.label}
                     </label>
                   </li>
